@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load markup %}
+
+{% block title %}{{ page.name|capfirst }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    {{ page.text|commonmark }}
+{% endblock content %}

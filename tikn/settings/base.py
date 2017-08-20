@@ -28,8 +28,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'apps.books',
+    'apps.pages',
 
     'imagekit',
+    'adminsortable2',
+    'django_markwhat',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'apps.pages.context_processors.menu',
             ],
         },
     },

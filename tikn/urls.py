@@ -19,10 +19,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from apps.books.views import BookList
+from apps.pages.views import PageDetail
 
 admin.site.site_header = 'Administracja Tikn'
 
 urlpatterns = [
     url(r'^$', BookList.as_view(), name='book-list'),
     url(r'^admin/', admin.site.urls),
+    url(r'^(?P<slug>[-\w]+)/$', PageDetail.as_view(), name='page-detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

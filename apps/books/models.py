@@ -51,12 +51,12 @@ class Book(models.Model):
         verbose_name="nakład",
         blank=True,
     )
-    price = models.IntegerField(
+    price = models.PositiveIntegerField(
         verbose_name="cena minimalna",
         blank=True,
         null=True,
     )
-    store_id = models.IntegerField(
+    store_id = models.PositiveIntegerField(
         verbose_name="ID w sklepie",
         help_text="product_id z adresu produktu na bractwotrojka.pl",
         blank=True,
@@ -73,11 +73,15 @@ class Book(models.Model):
         verbose_name="ukryj na stronie",
         default=False,
     )
+    order = models.PositiveIntegerField(
+        default=0,
+        verbose_name="kolejność",
+    )
 
     class Meta:
         verbose_name = "książka"
         verbose_name_plural = "książki"
-        ordering = ('-id', )
+        ordering = ('-order', '-id')
 
     def __str__(self):
         return self.title

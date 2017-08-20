@@ -16,6 +16,10 @@ def validate_has_src(value):
 
 
 class Book(models.Model):
+    author = models.CharField(
+        max_length=100,
+        verbose_name="autor",
+    )
     title = models.CharField(
         max_length=100,
         verbose_name="tytuł",

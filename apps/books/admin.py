@@ -10,13 +10,13 @@ from .models import Book
 @admin.register(Book)
 class BookAdmin(SortableAdminMixin, admin.ModelAdmin):
     fields = (
-        'title', 'cover', 'translator', 'original', 'edition', 'isbn',
+        'author', 'title', 'cover', 'translator', 'original', 'edition', 'isbn',
         'circulation', 'price', 'store_id', 'embed', 'hidden',
     )
-    list_display = ('title', 'translator', 'hidden')
+    list_display = ('title', 'author', 'hidden')
     list_editable = ('hidden', )
-    list_filter = ('hidden', 'translator', 'price')
-    search_fields = ('title', 'translator', 'isbn')
+    list_filter = ('hidden', 'translator', 'author', 'price')
+    search_fields = ('title', 'author', 'translator', 'isbn')
     formfield_overrides = {
         models.CharField: {
             'widget': forms.TextInput(attrs={'style': 'min-width: 50%'}),

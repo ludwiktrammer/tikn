@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Seria wydawnicza Tikn{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seria „Tikn” powstaje we współpracy z Oficyną Wydawniczą Bractwa Trojka. Zamierzamy wydawać krótkie teksty, których autorki i autorzy nie zawsze deklarowali się  „anarchiści”, a jednak wiązało ich z anarchistycznym ideałem takie właśnie powinowactwo.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"  type="text/css"><link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed|Roboto:400,500,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <a href="/"><img src="{% static 'images/logo_szerokie.svg' %}" alt="TIKN" width="200" height="70"/></a>
+    </header>
+    <nav class="top-navigation">
+        <div class="menu">
+            <a href="#">książki</a>
+            <a href="#">o serii</a>
+            <a href="#">plany wydawnicze</a>
+            <a href="#">kontakt</a>
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <nav class="bottom-navigation">
+        <div class="menu">
+            <a href="#">zbiórka na rozwój serii Tikn</a>
+        </div>
+    </nav>
+
+    <footer>
+        <a href="/"><img src="{% static 'images/logo.svg' %}" alt="Tikn" width="40" height="80"/></a>
+        <a href="http://www.bractwotrojka.pl/"><img src="{% static 'images/trojka.png' %}" alt="Oficyna Bractwa Trojka" width="59" height="80"/></a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+    <script type="text/javascript">
+        $.fancybox.defaults.buttons = ["close"];
+        $.fancybox.defaults.lang = "pl";
+        $.fancybox.defaults.i18n = {
+            'pl' : {
+                CLOSE       : 'Zamknij',
+                NEXT        : 'Następny',
+                PREV        : 'Poprzedni',
+                ERROR       : 'Nie można otworzyć strony. <br/> Spróbuj ponownie później.',
+                PLAY_START  : 'Zacznik pokaz slajdów',
+                PLAY_STOP   : 'Pauzuj pokaz slajdów',
+                FULL_SCREEN : 'Pełen ekran',
+                THUMBS      : 'Miniatury'
+            },
+        };
+    </script>
+</body>
+</html>

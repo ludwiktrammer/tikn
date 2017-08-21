@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="icon" type="image/png" href="{% static 'images/icon.png' %}">  
+    <link rel="icon" type="image/png" href="{% static 'images/icon.png' %}">
 </head>
 <body>
     <header>
@@ -19,7 +19,6 @@
     </header>
     <nav class="top-navigation">
         <div class="menu">
-            <a href="/">książki</a>
             {% for item in menu_items %}
                 <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
             {% endfor %}

@@ -7,7 +7,8 @@
                 {% if book.embed_url %}
                     <a data-fancybox data-type="iframe" data-src="{{ book.embed_url }}" href="javascript:;">
                 {% endif %}
-                        <img alt="{{ book.author }} - {{ book.title }}" src="{{ book.cover_list.url }}" width="260" height="365"/>
+                        <img alt="{{ book.author }} - {{ book.title
+                        }}" src="{{ book.cover_list.url }}" width="260" height="365"/>
                 {% if book.embed_url %}
                     </a>
                 {% endif %}
@@ -15,10 +16,10 @@
                     <div class="section">Przekład</div>
                     <div>{{ book.translator }}</div>
                     <div class="section">Tytuł oryginału i podstawa przekładu:</div>
-                    <div>{{ book.original }}</div>
+                    <div>{{ book.original|striptags|safe }}</div>
                     <div class="section">Wydanie {{ book.edition }}</div>
                     {% if book.isbn %}<div>ISBN {{ book.isbn }}</div>{% endif %}
-                    {% if book.circulation %}<div>Nakład 500 + 100</div>{% endif %}
+                    {% if book.circulation %}<div>Nakład {{ book.circulation }}</div>{% endif %}
                     {% if book.price %}<div class="price">Cena minimalna {{ book.price }} PLN</div>{% endif %}
                     {% if book.store_id %}<div class="store">
                         <a href="http://www.bractwotrojka.pl/index.php?option=com_virtuemart&page=shop.product_details&product_id={{ book.store_id }}">[Do sklepu]</a>

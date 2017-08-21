@@ -1,4 +1,6 @@
 import re
+import os
+import unicodedata
 
 from django.db import models
 from django.utils.functional import cached_property
@@ -15,6 +17,14 @@ def validate_has_src(value):
         raise ValidationError("To nie jest poprawny kod embed flipstack.com!")
 
 
+def remove_unicode(path):
+    def wrapper(instance, filename):
+        filename = unicodedata.normalize('NFKD', filename) \
+            .encode('ascii', 'ignore').decode('ascii')
+        return os.path.join(path, filename)
+    return wrapper
+
+
 class Book(models.Model):
     author = models.CharField(
         max_length=100,
@@ -25,7 +35,7 @@ class Book(models.Model):
         verbose_name="tytuł",
     )
     cover = models.ImageField(
-        upload_to='covers/',
+        upload_to=remove_unicode('covers/'),
         verbose_name="okładka",
     )
     cover_list = ImageSpecField(

@@ -7,8 +7,7 @@
                 {% if book.embed_url %}
                     <a data-fancybox data-type="iframe" data-src="{{ book.embed_url }}" href="javascript:;">
                 {% endif %}
-                        <img alt="{{ book.author }} - {{ book.title
-                        }}" src="{{ book.cover_list.url }}" width="260" height="365"/>
+                        <img alt="{{ book.author }} - {{ book.title }}" src="{{ book.cover_list.url }}" width="260" height="365"/>
                 {% if book.embed_url %}
                     </a>
                 {% endif %}

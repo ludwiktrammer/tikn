@@ -9,14 +9,23 @@ from .models import Book
 
 @admin.register(Book)
 class BookAdmin(SortableAdminMixin, admin.ModelAdmin):
-    fields = (
-        'author', 'title', 'cover', 'translator', 'original', 'edition', 'isbn',
-        'circulation', 'price', 'store_id', 'embed', 'hidden',
+    fieldsets = (
+        (None, {
+            'fields': (
+                'author', 'title', 'description', 'cover', 'translator', 'original', 'edition',
+                'isbn', 'circulation', 'price', 'store_id', 'embed', 'hidden',
+            )
+        }),
+        ('Zaawansowane', {
+            'classes': ('collapse',),
+            'fields': ('slug', 'hidden'),
+        }),
     )
     list_display = ('title', 'author', 'hidden')
     list_editable = ('hidden', )
     list_filter = ('hidden', 'translator', 'author', 'price')
     search_fields = ('title', 'author', 'translator', 'isbn')
+    prepopulated_fields = {'slug': ('title',)}
     formfield_overrides = {
         models.CharField: {
             'widget': forms.TextInput(attrs={'style': 'min-width: 50%'}),

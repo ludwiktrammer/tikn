@@ -1,0 +1,42 @@
+.book_sidebar {
+    margin: 5px auto;
+    line-height: 150%;
+    margin-bottom: 20px;
+}
+
+.book_sidebar p { /* neutralize automatic Markdown paragraphs */
+    margin: 0;
+}
+
+.book_sidebar .cover {
+    display: block;
+    margin: 10px auto;
+}
+
+.book_sidebar .section {
+    font-weight: bold;
+}
+
+.book_sidebar .store a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.book_sidebar .store a:hover {
+    text-decoration: underline;
+}
+
+
+@media (min-width: 700px) {
+    .book_sidebar {
+        float: left;
+        height: 100%;
+        width: 260px;
+    }
+
+    .book_description {
+        padding-left: 310px;
+    }
+}

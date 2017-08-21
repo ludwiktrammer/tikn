@@ -8,7 +8,7 @@ class Page(models.Model):
         max_length=100,
         verbose_name="nazwa",
     )
-    slug = models.CharField(
+    slug = models.SlugField(
         max_length=100,
         unique=True,
         verbose_name="identyfikator",

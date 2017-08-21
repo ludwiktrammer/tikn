@@ -5,6 +5,9 @@ import unicodedata
 from django.db import models
 from django.utils.functional import cached_property
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
+from django.utils.deconstruct import deconstructible
+from django.utils.safestring import mark_safe
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import SmartResize
@@ -25,6 +28,17 @@ def remove_unicode(path):
     return wrapper
 
 
+@deconstructible
+class PathAndRemoveUnicode(object):
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
+        filename = unicodedata.normalize('NFKD', filename) \
+            .encode('ascii', 'ignore').decode('ascii')
+        return os.path.join(self.path, filename)
+
+
 class Book(models.Model):
     author = models.CharField(
         max_length=100,
@@ -34,8 +48,18 @@ class Book(models.Model):
         max_length=100,
         verbose_name="tytuł",
     )
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        verbose_name="identyfikator",
+        help_text="wykorzystywane w adresie strony",
+    )
+    description = models.TextField(
+        verbose_name="Opis",
+        help_text=mark_safe("możesz używać znaczników formatowania <a href='http://commonmark.org/help/'>MarkDown</a>"),
+    )
     cover = models.ImageField(
-        upload_to=remove_unicode('covers/'),
+        upload_to=PathAndRemoveUnicode('covers/'),
         verbose_name="okładka",
     )
     cover_list = ImageSpecField(
@@ -49,7 +73,8 @@ class Book(models.Model):
     )
     original = models.TextField(
         verbose_name="tytuł orginału",
-        help_text="(i podstawa przekładu)",
+        blank=True,
+        help_text=mark_safe("możesz używać znaczników formatowania <a href='http://commonmark.org/help/'>MarkDown</a>"),
     )
     edition = models.CharField(
         max_length=50,
@@ -99,6 +124,11 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('book-detail', kwargs={
+            'slug': self.slug,
+        })
 
     @cached_property
     def embed_url(self):

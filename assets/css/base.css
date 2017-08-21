@@ -1,0 +1,62 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 35px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 0;
+}
+
+footer a {
+    margin: 0 30px;
+}
+
+nav {
+    border-width: 1px 0;
+    border-color: black;
+    border-style: solid;
+
+    font-size: 25px;
+}
+
+nav .menu {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    margin: 8px 24px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav.bottom-navigation {
+    margin-top: 50px;
+}
+
+.content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.error {
+    text-align: center;
+}
+
+.bottom-navigation, footer {
+    clear: both;
+}

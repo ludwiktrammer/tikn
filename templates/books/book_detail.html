@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load markup staticfiles %}
+
+{% block title %}{{ book.title }} - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+    <script type="text/javascript">
+        $.fancybox.defaults.buttons = ["close"];
+        $.fancybox.defaults.lang = "pl";
+        $.fancybox.defaults.i18n = {
+            'pl' : {
+                CLOSE       : 'Zamknij',
+                NEXT        : 'Następny',
+                PREV        : 'Poprzedni',
+                ERROR       : 'Nie można otworzyć strony. <br/> Spróbuj ponownie później.',
+                PLAY_START  : 'Zacznik pokaz slajdów',
+                PLAY_STOP   : 'Pauzuj pokaz slajdów',
+                FULL_SCREEN : 'Pełen ekran',
+                THUMBS      : 'Miniatury'
+            },
+        };
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="book_sidebar">
+        {% if book.embed_url %}
+            <a data-fancybox data-type="iframe" data-src="{{ book.embed_url }}" href="javascript:;">
+        {% endif %}
+                <img class="cover" alt="{{ book.author }} - {{ book.title }}" src="{{ book.cover_list.url }}" width="260" height="365"/>
+        {% if book.embed_url %}
+            </a>
+        {% endif %}
+        <div class="description">
+            <div class="section">Przekład</div>
+            <div>{{ book.translator }}</div>
+            <div class="section">Tytuł oryginału i podstawa przekładu:</div>
+            <div>{{ book.original|commonmark }}</div>
+            <div class="section">Wydanie {{ book.edition }}</div>
+            {% if book.isbn %}<div>ISBN {{ book.isbn }}</div>{% endif %}
+            {% if book.circulation %}<div>Nakład {{ book.circulation }}</div>{% endif %}
+            {% if book.price %}<div class="price">Cena minimalna {{ book.price }} PLN</div>{% endif %}
+            {% if book.store_id %}<div class="store">
+                <a href="http://www.bractwotrojka.pl/index.php?option=com_virtuemart&page=shop.product_details&product_id={{ book.store_id }}">[Sklep]</a>
+            </div>{% endif %}
+        </div>
+    </div>
+    <div class="book_description">
+        <h1>{{ book.author }}, <em>{{ book.title }}</em></h1>
+        {{ book.description|commonmark }}
+    </book>
+{% endblock content %}

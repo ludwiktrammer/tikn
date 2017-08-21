@@ -47,6 +47,17 @@ nav.bottom-navigation {
     margin-top: 50px;
 }
 
+.facebook {
+    display: block;
+    float: right;
+    margin: 7px;
+    filter: grayscale(100%);
+}
+
+.facebook:hover {
+    filter: grayscale(0%);
+}
+
 .content {
     max-width: 1000px;
     margin: 0 auto;

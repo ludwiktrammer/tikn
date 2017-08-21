@@ -18,6 +18,9 @@
         <a href="/"><img src="{% static 'images/logo_szerokie.svg' %}" alt="TIKN" width="200" height="70"/></a>
     </header>
     <nav class="top-navigation">
+        <a class="facebook" href="https://www.facebook.com/SeriaTikn">
+            <img src="{% static 'images/facebook.svg' %}" alt="Facebook" width="30" height="30">
+        </a>
         <div class="menu">
             {% for item in menu_items %}
                 <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>

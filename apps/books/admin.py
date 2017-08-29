@@ -13,7 +13,7 @@ class BookAdmin(SortableAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'author', 'title', 'description', 'cover', 'translator', 'original', 'edition',
-                'isbn', 'circulation', 'price', 'store_id', 'embed', 'hidden',
+                'isbn', 'circulation', 'price', 'store_id', 'embed',
             )
         }),
         ('Zaawansowane', {

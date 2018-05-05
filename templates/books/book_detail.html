@@ -39,11 +39,23 @@
             </a>
         {% endif %}
         <div class="description">
-            <div class="section">Przekład</div>
-            <div>{{ book.translator }}</div>
-            <div class="section">Tytuł oryginału i podstawa przekładu:</div>
-            <div>{{ book.original|commonmark }}</div>
-            <div class="section">Wydanie {{ book.edition }}</div>
+            {% if book.translator %}
+              <div class="section">Przekład</div>
+              <div>{{ book.translator }}</div>
+            {% endif %}
+            {% if book.editor %}
+              <div class="section">Redakcja</div>
+              <div>{{ book.editor }}</div>
+            {% endif %}
+            {% if book.original %}
+              <div class="section">Tytuł oryginału i podstawa przekładu:</div>
+              <div>{{ book.original|commonmark }}</div>
+            {% endif %}
+            {% if book.base %}
+              <div class="section">Podstawa wydania:</div>
+              <div>{{ book.base|commonmark }}</div>
+            {% endif %}
+            {% if book.edition %}<div class="section">Wydanie {{ book.edition }}</div>{% endif %}
             {% if book.isbn %}<div>ISBN {{ book.isbn }}</div>{% endif %}
             {% if book.circulation %}<div>Nakład {{ book.circulation }}</div>{% endif %}
             {% if book.price %}<div class="price">Cena minimalna {{ book.price }} PLN</div>{% endif %}

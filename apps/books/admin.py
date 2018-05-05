@@ -12,8 +12,8 @@ class BookAdmin(SortableAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'author', 'title', 'description', 'cover', 'translator', 'original', 'edition',
-                'isbn', 'circulation', 'price', 'store_id', 'embed',
+                'author', 'title', 'description', 'cover', 'translator', 'editor', 'original',
+                'base', 'edition', 'isbn', 'circulation', 'price', 'store_id', 'embed',
             )
         }),
         ('Zaawansowane', {

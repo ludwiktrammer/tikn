@@ -69,15 +69,27 @@ class Book(models.Model):
     )
     translator = models.CharField(
         max_length=100,
-        verbose_name="tłumaczka",
+        verbose_name="przekład",
+        blank=True,
+    )
+    editor = models.CharField(
+        max_length=100,
+        verbose_name="redakcja",
+        blank=True,
     )
     original = models.TextField(
-        verbose_name="tytuł orginału",
+        verbose_name="tytuł orginału i podstawa przekładu",
+        blank=True,
+        help_text=mark_safe("możesz używać znaczników formatowania <a href='http://commonmark.org/help/'>MarkDown</a>"),
+    )
+    base = models.TextField(
+        verbose_name="podstawa wydania",
         blank=True,
         help_text=mark_safe("możesz używać znaczników formatowania <a href='http://commonmark.org/help/'>MarkDown</a>"),
     )
     edition = models.CharField(
         max_length=50,
+        blank=True,
         verbose_name="wydanie",
     )
     isbn = models.CharField(

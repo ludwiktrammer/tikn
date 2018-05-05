@@ -6,7 +6,7 @@ from .models import Book
 class BookList(ListView):
     model = Book
     queryset = Book.objects.filter(hidden=False)
-    paginate_by = 3
+    paginate_by = 24
 
 
 class BookDetail(DetailView):

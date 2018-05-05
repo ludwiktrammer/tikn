@@ -13,12 +13,12 @@
                     <img alt="{{ book.author }} - {{ book.title }}" src="{{ book.cover_list.url }}" width="260" height="365"/>
                 </a>
                 <div class="description">
-                    {% if book.price %}<div class="price">Cena minimalna {{ book.price }} PLN</div>{% endif %}
+                    {% if book.price %}<div class="price">cena minimalna {{ book.price }} PLN</div>{% endif %}
                     <div class="links">
                         {% if book.store_id %}
-                            <a href="http://www.bractwotrojka.pl/index.php?option=com_virtuemart&page=shop.product_details&product_id={{ book.store_id }}">[Sklep]</a>
+                            <a href="http://www.bractwotrojka.pl/index.php?option=com_virtuemart&page=shop.product_details&product_id={{ book.store_id }}">[sklep]</a>
                         {% endif %}
-                        <a href="{{ book.get_absolute_url }}">[Info]</a>
+                        <a href="{{ book.get_absolute_url }}">[info]</a>
                     </div>
 
                 </div>
@@ -28,11 +28,11 @@
 
     <div class="pagination">
         {% if page_obj.has_previous %}
-            <a href="/?page={{ page_obj.previous_page_number }}">« Nowsze</a>
+            <a href="/?page={{ page_obj.previous_page_number }}">« nowsze</a>
         {% endif %}
         {% if page_obj.has_previous and page_obj.has_next %}|{% endif %}
         {% if page_obj.has_next %}
-            <a href="/?page={{ page_obj.next_page_number }}">Wcześniejsze »</a>
+            <a href="/?page={{ page_obj.next_page_number }}">wcześniejsze »</a>
         {% endif %}
     </div>
 {% endblock content %}
